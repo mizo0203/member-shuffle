@@ -1,3 +1,6 @@
+console.debug('id = ' + getParams()['id']);
+console.debug('name = ' + getParams()['name']);
+
 function shuffle() {
     const names = [];
     for (const name of document.getElementsByName('names')) {
@@ -18,4 +21,22 @@ function shuffle() {
     for (const shuffled_name of shuffled_names) {
         element.innerHTML += '<li><strong>' + shuffled_name + '</strong></li>\n';
     }
+}
+
+/**
+ * GET パラメータを取得
+ * 
+ * https://techacademy.jp/magazine/25659
+ */
+function getParams() {
+    const queryObject = new Object();
+    if (window.location.search) {
+        window.location.search.substring(1).split('&').forEach(parameter => {
+            const element = parameter.split('=');
+            const paramName = decodeURIComponent(element[0]);
+            const paramValue = decodeURIComponent(element[1]);
+            queryObject[paramName] = paramValue;
+        });
+    }
+    return queryObject;
 }
