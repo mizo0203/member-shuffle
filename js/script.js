@@ -1,5 +1,20 @@
-console.debug('id = ' + getParams()['id']);
-console.debug('name = ' + getParams()['name']);
+const num = Number(getParams()['num']);
+if (num > 0) {
+    window.addEventListener('DOMContentLoaded', () => {
+        let html = '';
+        for (let n = 1; n <= num; n++) {
+            html += '<div class="field">';
+            html += '    <div class="control">';
+            html += '        <input class="input" input name="names" placeholder="' + n + ' 人目" type="text">';
+            html += '    </div>';
+            html += '</div>';
+        }
+        document.getElementById('names').innerHTML += html;
+    });
+} else {
+    // Redirect
+    window.location.href = window.location.protocol + '//' + window.location.pathname + '?num=12';
+}
 
 function shuffle() {
     const names = [];
