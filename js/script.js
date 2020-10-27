@@ -1,5 +1,5 @@
 const num = Number(getParams()['num']);
-if (num > 0) {
+if (num > 1) {
     window.addEventListener('DOMContentLoaded', () => {
         let html = '';
         for (let n = 1; n <= num; n++) {
@@ -13,7 +13,7 @@ if (num > 0) {
     });
 } else {
     // Redirect
-    window.location.href = window.location.protocol + '//' + window.location.pathname + '?num=12';
+    window.location.href = window.location.href.split('?')[0] + '?num=12';
 }
 
 function shuffle() {
