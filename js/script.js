@@ -1,11 +1,19 @@
 const num = Number(getParams()['num']);
-if (num > 1) {
+if (num > 0) {
     window.addEventListener('DOMContentLoaded', () => {
         let html = '';
-        for (let n = 1; n <= num; n++) {
+        if (num > 1) {
+            for (let n = 1; n <= num; n++) {
+                html += '<div class="field">';
+                html += '    <div class="control">';
+                html += '        <input class="input" name="names" placeholder="' + n + ' 人目" type="text">';
+                html += '    </div>';
+                html += '</div>';
+            }
+        } else {
             html += '<div class="field">';
             html += '    <div class="control">';
-            html += '        <input class="input" input name="names" placeholder="' + n + ' 人目" type="text">';
+            html += '        <textarea class="textarea" name="names" placeholder="1 人目\n2 人目\n :" rows="10"></textarea>';
             html += '    </div>';
             html += '</div>';
         }
@@ -19,7 +27,7 @@ if (num > 1) {
 function shuffle() {
     const names = [];
     for (const name of document.getElementsByName('names')) {
-        names.push(name.value);
+        name.value.split('\n').forEach(element => names.push(element));
     }
     const shuffled_names = [];
     while (names.length > 0) {
